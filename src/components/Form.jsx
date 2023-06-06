@@ -19,13 +19,12 @@ export default function Form({ pageName }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    login[pageName](value.email, value.password).then((data) => {
+    login[pageName](value.email, value.password).then((isSuccess) => {
       if (pageName === "signin") {
-        localStorage.setItem("token", data.access_token);
-        navigate("/todo");
+        isSuccess && navigate("/todo");
       }
       if (pageName === "signup") {
-        navigate("/signin");
+        isSuccess && navigate("/signin");
       }
     });
   };
