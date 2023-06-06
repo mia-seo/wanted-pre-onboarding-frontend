@@ -9,7 +9,7 @@ export default function Home() {
         src="https://github.com/mia-seo/wanted-pre-onboarding-frontend/assets/117281717/66b69edc-e0ed-4b11-a2db-056ebecb10a8"
         alt="banner"
       />
-      <div className="flex gap-3 absolute bottom-[140px] left-[50px]">
+      <div className="flex gap-3 absolute bottom-[50px] left-[50px]">
         {buttons.map((el, index) => (
           <Link
             to={`/${el}`}
