@@ -25,7 +25,10 @@ const router = createBrowserRouter([
       </ProtectedRoute>
     ),
   },
-  { path: "/todo", element: <Todo /> },
+  {
+    path: "/todo",
+    element: <Todo />,
+  },
 ]);
 
 export default function App() {
