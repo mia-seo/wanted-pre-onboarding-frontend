@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext } from "react";
 import Login from "../api/login/loginApi";
 import LoginClient from "../api/login/loginApiClient";
 import Todo from "../api/todo/todoApi";
@@ -14,17 +14,8 @@ const login = new Login(loginClient);
 const todoApi = new Todo(todoClient);
 
 export function TodoApiProvider({ children }) {
-  const [todos, setTodos] = useState([]);
-  const [refresh, setRefresh] = useState(1);
-
-  useEffect(() => {
-    todoApi.getTodos().then((todos) => setTodos(todos));
-  }, [refresh]);
-
   return (
-    <TodoApiContext.Provider
-      value={{ login, token, todoApi, todos, setRefresh }}
-    >
+    <TodoApiContext.Provider value={{ login, token, todoApi }}>
       {children}
     </TodoApiContext.Provider>
   );

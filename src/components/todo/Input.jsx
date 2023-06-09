@@ -1,16 +1,12 @@
 import React, { useState } from "react";
-import { useTodoApi } from "../context/TodoApiContext";
 
-export default function Input() {
+export default function Input({ onCreate }) {
   const [text, setText] = useState("");
-  const { todoApi, setRefresh } = useTodoApi();
   const handleChange = (e) => setText(e.target.value);
-
   const handleSubmit = (e) => {
     e.preventDefault();
     if (text) {
-      todoApi.createTodo(text);
-      setRefresh((prev) => prev * -1);
+      onCreate(text);
       setText("");
     }
   };
