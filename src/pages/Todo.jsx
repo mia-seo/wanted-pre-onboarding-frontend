@@ -9,6 +9,7 @@ export default function Todo() {
   const navigate = useNavigate();
   const [todos, setTodos] = useState([]);
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const createTodo = (todo) => {
     todoApi.createTodo(todo);
   };
@@ -25,7 +26,7 @@ export default function Todo() {
         })
       );
     },
-    [todoApi]
+    [todoApi, todos]
   );
 
   const deleteTodo = useCallback(
