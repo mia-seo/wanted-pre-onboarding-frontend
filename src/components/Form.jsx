@@ -43,7 +43,7 @@ export default function Form({ pageName }) {
             type={title === "password" ? "password" : "text"}
             name={title}
             placeholder={placeholder}
-            className="input input-bordered w-full max-w-xs text-brandB font-semibold"
+            className="input input-bordered w-full max-w-xs bg-brandB text-brandG font-semibold"
             value={value[title]}
             onChange={handleChange}
           />
