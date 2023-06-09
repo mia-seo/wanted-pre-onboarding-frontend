@@ -5,7 +5,7 @@ import TodoList from "../components/todo/TodoList";
 import Input from "../components/todo/Input";
 
 export default function Todo() {
-  const { token, todoApi } = useTodoApi();
+  const { todoApi, token } = useTodoApi();
   const navigate = useNavigate();
   const [todos, setTodos] = useState([]);
 
@@ -49,9 +49,12 @@ export default function Todo() {
     todoApi.getTodos().then((todos) => setTodos(todos));
   }, [todoApi]);
 
-  if (!token) {
-    navigate("/signin");
-  }
+  useEffect(() => {
+    if (!token) {
+      navigate("/signin");
+    }
+  }, [token, navigate]);
+
   return (
     <div className="w-full md:w-[50%] h-[70%] flex flex-col justify-evenly items-center bg-brandG rounded-xl">
       <h1 className="text-brandB text-3xl font-bold text-center py-8">

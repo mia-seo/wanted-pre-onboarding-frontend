@@ -30,7 +30,7 @@ export default class Login {
       .signin(email, password)
       .then((res) => {
         localStorage.setItem("token", res.data.access_token);
-        return true;
+        return res.data.access_token;
       })
       .catch(() => {
         Swal.fire({

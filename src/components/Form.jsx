@@ -9,7 +9,7 @@ export default function Form({ pageName }) {
   });
   const isValidEmail = value.email.includes("@");
   const isValidPassword = value.password.length >= 8;
-  const { login } = useTodoApi();
+  const { login, setToken } = useTodoApi();
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -19,12 +19,13 @@ export default function Form({ pageName }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    login[pageName](value.email, value.password).then((isSuccess) => {
+    login[pageName](value.email, value.password).then((data) => {
       if (pageName === "signin") {
-        isSuccess && navigate("/todo");
+        data && setToken(data);
+        data && navigate("/todo", { state: data });
       }
       if (pageName === "signup") {
-        isSuccess && navigate("/signin");
+        data && navigate("/signin");
       }
     });
   };
