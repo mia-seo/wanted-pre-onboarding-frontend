@@ -9,10 +9,14 @@ export default function Todo() {
   const navigate = useNavigate();
   const [todos, setTodos] = useState([]);
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const createTodo = (todo) => {
-    todoApi.createTodo(todo);
-  };
+  const createTodo = useCallback(
+    (todo) => {
+      todoApi
+        .createTodo(todo)
+        .then(() => todoApi.getTodos().then((todos) => setTodos(todos)));
+    },
+    [todoApi]
+  );
 
   const updateTodo = useCallback(
     (id, todo, isCompleted) => {
@@ -43,7 +47,7 @@ export default function Todo() {
 
   useEffect(() => {
     todoApi.getTodos().then((todos) => setTodos(todos));
-  }, [todoApi, createTodo]);
+  }, [todoApi]);
 
   if (!token) {
     navigate("/signin");

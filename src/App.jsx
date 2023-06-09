@@ -1,6 +1,5 @@
 import React from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import ProtectedRoute from "./components/ProtectedRoute";
 import { TodoApiProvider } from "./context/TodoApiContext";
 import Home from "./pages/Home";
 import Signin from "./pages/Signin";
@@ -11,19 +10,11 @@ const router = createBrowserRouter([
   { path: "/", element: <Home /> },
   {
     path: "/signin",
-    element: (
-      <ProtectedRoute>
-        <Signin />
-      </ProtectedRoute>
-    ),
+    element: <Signin />,
   },
   {
     path: "/signup",
-    element: (
-      <ProtectedRoute>
-        <Signup />
-      </ProtectedRoute>
-    ),
+    element: <Signup />,
   },
   {
     path: "/todo",
